@@ -9,12 +9,12 @@ class Home extends StatefulWidget {
 
 class Pesanan {
   final String img;
-  final String prod;
-  final String dapur;
-  final String brand;
+  final String matkul;
+  final String dosen;
+  final String jam;
   final int qty;
 
-  Pesanan({this.img, this.prod, this.brand, this.dapur, this.qty});
+  Pesanan({this.img, this.matkul, this.jam, this.dosen, this.qty});
 }
 
 class Tanggal {
@@ -26,17 +26,18 @@ class Tanggal {
 class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   final List<Pesanan> pesanan = [
     Pesanan(
-        img: 'https://kln.imgix.net/stage/e7cd97670e8b13c131ac6e9cd46e0a0d.jpg',
-        prod: 'Mie Keriting Ayam Chasiu',
-        dapur: 'Kulina Signature',
-        brand: 'Chinese Lunch',
+        img:
+            'https://lh3.googleusercontent.com/a-/AAuE7mDo9X8K6ERYHNB0hZn2JWxgMQk1mOdkmbiEudjP=s50',
+        matkul: 'Algoritma Pemrograman',
+        dosen: 'Zainudin Zuhri S.Kom., M.Kom.',
+        jam: '07:00 - 09.00',
         qty: 101),
     Pesanan(
         img:
-            'https://kln.imgix.net/stage/ayam-goreng-serundeng-dan-capcay-goreng-2.jpg',
-        prod: 'Mie Keriting Ayam Chasiu',
-        brand: 'Chinese Lunch',
-        dapur: 'Kulina Signature',
+            'https://lh3.googleusercontent.com/a-/AAuE7mDo9X8K6ERYHNB0hZn2JWxgMQk1mOdkmbiEudjP=s50',
+        matkul: 'Pemrograman Java',
+        jam: '10.30 - 12.00',
+        dosen: 'Chanifah S.Kom., M.Kom',
         qty: 292),
   ];
 
@@ -88,8 +89,11 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                   onTap: () {
                     showModalBottomSheet(
                         context: context,
+                      // elevation: 10.0,
+                        // isScrollControlled: true,
+                        // isDismissible: true,
                         builder: (BuildContext bc) {
-                          return ListView(
+                          return Column(
                             children: <Widget>[
                               Container(
                                 // height: 900,
@@ -137,7 +141,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                                 margin:
                                                     EdgeInsets.only(left: 8.0),
                                                 child: Text(
-                                                  pesanan[index].prod,
+                                                  pesanan[index].dosen,
                                                   style: TextStyle(
                                                       fontWeight:
                                                           FontWeight.bold),
@@ -146,41 +150,19 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                               Container(
                                                 margin: EdgeInsets.only(
                                                     bottom: 15.0, left: 8.0),
-                                                child: Text(
-                                                  pesanan[index].brand,
-                                                ),
-                                              ),
-                                              Container(
-                                                margin:
-                                                    EdgeInsets.only(left: 8.0),
-                                                child: Text(
-                                                  "Pengiriman",
-                                                  style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      color: Colors.red),
+                                                child: Row(
+                                                  children: <Widget>[
+                                                    Text(
+                                                      pesanan[index].matkul,
+                                                    ),
+                                                    Text(" | "),
+                                                    Text(pesanan[index].jam)
+                                                  ],
                                                 ),
                                               ),
                                             ],
                                           ),
                                           Expanded(child: SizedBox()),
-                                          Container(
-                                            decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(30),
-                                              color: Colors.green,
-                                            ),
-                                            child: Align(
-                                              alignment: Alignment.topRight,
-                                              child: Text(
-                                                pesanan[index].qty.toString(),
-                                                style: TextStyle(
-                                                    color: Colors.white),
-                                              ),
-                                            ),
-                                            padding: EdgeInsets.all(5),
-                                            margin: EdgeInsets.all(10),
-                                          ),
                                         ],
                                       ),
                                     ),
@@ -191,7 +173,6 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                           color: Colors.grey[300]),
                                       height: 1,
                                       width: 500,
-                                      // padding: EdgeInsets.all(20),
                                       margin:
                                           EdgeInsets.only(bottom: 20, top: 20),
                                     ),
@@ -426,7 +407,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                 Container(
                                   margin: EdgeInsets.only(left: 8.0),
                                   child: Text(
-                                    pesanan[index].prod,
+                                    pesanan[index].dosen,
                                     style:
                                         TextStyle(fontWeight: FontWeight.bold),
                                   ),
@@ -434,37 +415,43 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                 Container(
                                   margin:
                                       EdgeInsets.only(bottom: 15.0, left: 8.0),
-                                  child: Text(
-                                    pesanan[index].brand,
+                                  child: Row(
+                                    children: <Widget>[
+                                      Text(
+                                        pesanan[index].matkul,
+                                      ),
+                                      Text(" | "),
+                                      Text(pesanan[index].jam)
+                                    ],
                                   ),
                                 ),
-                                Container(
-                                  margin: EdgeInsets.only(left: 8.0),
-                                  child: Text(
-                                    "Pengiriman",
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.red),
-                                  ),
-                                ),
+                                // Container(
+                                //   margin: EdgeInsets.only(left: 8.0),
+                                //   child: Text(
+                                //     "Pengiriman",
+                                //     style: TextStyle(
+                                //         fontWeight: FontWeight.bold,
+                                //         color: Colors.red),
+                                //   ),
+                                // ),
                               ],
                             ),
                             Expanded(child: SizedBox()),
-                            Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(30),
-                                color: Colors.green,
-                              ),
-                              child: Align(
-                                alignment: Alignment.topRight,
-                                child: Text(
-                                  pesanan[index].qty.toString(),
-                                  style: TextStyle(color: Colors.white),
-                                ),
-                              ),
-                              padding: EdgeInsets.all(5),
-                              margin: EdgeInsets.all(10),
-                            ),
+                            // Container(
+                            //   decoration: BoxDecoration(
+                            //     borderRadius: BorderRadius.circular(30),
+                            //     color: Colors.green,
+                            //   ),
+                            //   child: Align(
+                            //     alignment: Alignment.topRight,
+                            //     child: Text(
+                            //       pesanan[index].qty.toString(),
+                            //       style: TextStyle(color: Colors.white),
+                            //     ),
+                            //   ),
+                            //   padding: EdgeInsets.all(5),
+                            //   margin: EdgeInsets.all(10),
+                            // ),
                           ],
                         ),
                       ],
