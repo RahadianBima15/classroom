@@ -1,8 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_switch/flutter_switch.dart';
 
-class Profil extends StatelessWidget {
-  bool togleValue = false;
-  
+class Profil extends StatefulWidget {
+  @override
+  _ProfilState createState() => _ProfilState();
+}
+
+class _ProfilState extends State<Profil> {
+  bool isSwitched = false;
+
+  toggleButton() {
+    setState(() {
+      isSwitched = !isSwitched;
+      print(isSwitched);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,7 +47,7 @@ class Profil extends StatelessWidget {
                           children: <Widget>[
                             CircleAvatar(
                               backgroundImage: NetworkImage(
-                                  'https://kln.imgix.net/stage/kulina.png'),
+                                  'https://kln.imgix.net/stage/community-20200207130812.jpg'),
                               maxRadius: 25.0,
                             ),
                             Positioned(
@@ -55,7 +68,7 @@ class Profil extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               Text(
-                                "Nama Institusi",
+                                "PT. Pembangunan Perumahan",
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold, fontSize: 15),
                               ),
@@ -78,48 +91,26 @@ class Profil extends StatelessWidget {
                         left: 20, right: 20, top: 10, bottom: 10),
                     child: Row(
                       children: <Widget>[
-                        Icon(
-                          Icons.list,
-                          color: Colors.grey,
-                        ),
+                        Icon(Icons.notifications, color: Colors.green),
                         Padding(
                           padding: const EdgeInsets.all(10.0),
-                          child: Text("Profil Detail"),
+                          child: Text("Ijinkan notifikasi"),
                         ),
                         Expanded(child: SizedBox()),
-                        AnimatedContainer(duration: Duration(milliseconds: 1000),
-                        height: 40.0,
-                        width: 100.0,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20.0),
-                          color: togleValue ? Colors.greenAccent[100]: Colors.redAccent[100].withOpacity(0.5)
-                        ),),
-                        
-                      ],
-                    ),
-                  ),
-                  Container(
-                    height: 1,
-                    color: Colors.grey,
-                  ),
-                  Container(
-                    padding: EdgeInsets.only(
-                        left: 20, right: 20, top: 10, bottom: 10),
-                    child: Row(
-                      children: <Widget>[
-                        Icon(
-                          Icons.list,
-                          color: Colors.grey,
+                        // Transform.scale(
+                        // scale: 1.2,
+                        FlutterSwitch(
+                          height: 30.0,
+                          width: 50.0,
+                          padding: 0.25,
+                          toggleSize: 30.0,
+                          // showOnOff: true,
+                          value: isSwitched,
+                          onToggle: (value) {
+                            toggleButton();
+                          },
+                          activeColor: Colors.green,
                         ),
-                        Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: Text("Profil Detail"),
-                        ),
-                        Expanded(child: SizedBox()),
-                        Icon(
-                          Icons.arrow_forward_ios,
-                          color: Colors.grey,
-                        )
                       ],
                     ),
                   ),
@@ -140,7 +131,7 @@ class Profil extends StatelessWidget {
                           padding: const EdgeInsets.all(10.0),
                           child: Text(
                             "Logout",
-                            style: TextStyle(color: Colors.red),
+                            style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
                           ),
                         ),
                       ],

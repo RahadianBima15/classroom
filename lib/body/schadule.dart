@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class Schedule extends StatelessWidget {
   @override
@@ -24,7 +25,43 @@ class Schedule extends StatelessWidget {
         ],
       ),
       body: Center(
-        child: Text("Materials"),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              SvgPicture.asset(
+                "assets/empty_image.svg",
+                height: 250.0,
+                width: 250.0,
+                fit: BoxFit.contain,
+              ),
+              Text(
+                "Ops! Material mu masih kosong",
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(
+                    left: 20.0, right: 20.0, top: 10, bottom: 10),
+                child: Text(
+                    "Tambahin meterial nya yuk biar ada daftar material punya kamu sendiri",
+                    overflow: TextOverflow.visible,
+                    textAlign: TextAlign.center),
+              ),
+              FlatButton(
+                onPressed: () {},
+                color: Colors.green,
+                splashColor: Colors.green[200],
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5)),
+                child: Text(
+                  'Tambah Schedule',
+                  style: TextStyle(color: Colors.white),
+                ),
+              )
+            ],
+          ),
+        ),
       ),
     );
   }

@@ -36,7 +36,7 @@ class Body extends StatelessWidget {
           SizedBox(
             height: 50.0,
             child: TextField(
-              keyboardType: TextInputType.numberWithOptions(),
+              keyboardType: TextInputType.text,
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
                 labelText: 'Username',
