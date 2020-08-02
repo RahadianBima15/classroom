@@ -156,7 +156,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                                                       pesanan[index].matkul,
                                                     ),
                                                     Text(" | "),
-                                                    Text(pesanan[index].jam)
+                                                    Text(pesanan[index].jam, overflow: TextOverflow.visible, textAlign: TextAlign.left,)
                                                   ],
                                                 ),
                                               ),
