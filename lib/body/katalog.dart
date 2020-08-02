@@ -1,10 +1,12 @@
-import 'package:caterer_study/api_file/get_user.dart';
+// import 'package:caterer_study/api_file/get_user.dart';
 import 'package:flutter/material.dart';
 import 'package:caterer_study/body/from/form_material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:caterer_study/api_file/api_service.dart';
+// import 'package:caterer_study/api_file/api_service.dart';
 import 'dart:convert';
+import 'package:http/http.dart' as http;
+
 
 class Katalog extends StatefulWidget {
   @override
@@ -12,25 +14,44 @@ class Katalog extends StatefulWidget {
 }
 
 class _KatalogState extends State<Katalog> {
-  var users = new List<User>();
+  
+  Map data;
+  List userData;
 
-  _getUsers() {
-    ApiService.getUsers().then((response) {
-      setState(() {
-        Iterable list = json.decode(response.body);
-        users = list.map((model) => User.fromJson(model)).toList();
-      });
+  Future getData() async {
+    http.Response response = await http.get("https://reqres.in/api/users?page=2");
+    data = json.decode(response.body);
+    setState(() {
+      userData = data["data"];
     });
   }
 
-  initState() {
+  @override
+  void initState() {
     super.initState();
-    _getUsers();
+    getData();
   }
 
-  dispose() {
-    super.dispose();
-  }
+  // var users = new List<User>();
+
+  // _getUsers() {
+  //   ApiService.getUsers().then((response) {
+  //     setState(() {
+  //       Iterable list = json.decode(response.body);
+  //       users = list.map((model) => User.fromJson(model)).toList();
+  //       print(list);
+  //     });
+  //   });
+  // }
+
+  // initState() {
+  //   super.initState();
+  //   _getUsers();
+  // }
+
+  // dispose() {
+  //   super.dispose();
+  // }
 
   // String coba = null;
 
@@ -55,7 +76,7 @@ class _KatalogState extends State<Katalog> {
             )
           ],
         ),
-        body: users.length == 0
+        body: userData.length == null
             ? Center(
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -103,14 +124,14 @@ class _KatalogState extends State<Katalog> {
                   ),
                 ),
               )
-              : Text("day")
+              // : Text("day")
             // : Text("data")
-            // : ListView.builder(
-            //     itemBuilder: (context, index) {
-            //       return Text(users[index].email);
-            //     },
-            //     itemCount: users.length,
-            //   )
+            : ListView.builder(
+                itemBuilder: (context, index) {
+                  return Text(userData[index]['email']);
+                },
+                itemCount: userData.length,
+              )
               );
   }
 }

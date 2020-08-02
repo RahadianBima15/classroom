@@ -5,7 +5,7 @@ import 'package:caterer_study/body/from/form_material.dart';
 class Schedule extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Scaffold(  
       appBar: AppBar(
         backgroundColor: Colors.green,
         automaticallyImplyLeading: false,
