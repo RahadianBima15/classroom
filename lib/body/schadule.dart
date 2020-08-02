@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:caterer_study/body/from/form_material.dart';
 
 class Schedule extends StatelessWidget {
   @override
@@ -49,13 +50,20 @@ class Schedule extends StatelessWidget {
                     textAlign: TextAlign.center),
               ),
               FlatButton(
-                onPressed: () {},
+                onPressed: () {
+                  showModalBottomSheet(
+                      context: context,
+                      isDismissible: true,
+                      builder: (BuildContext bc) {
+                        return Form_Material();
+                      });
+                },
                 color: Colors.green,
                 splashColor: Colors.green[200],
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(5)),
                 child: Text(
-                  'Tambah Schedule',
+                  'Tambah Material',
                   style: TextStyle(color: Colors.white),
                 ),
               )
